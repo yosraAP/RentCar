@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" th:href="@{${'/images/logo.png'}}">
+    <link rel="stylesheet" type="text/css" th:href="@{${'Css/style.css'}}"/>
+    <title>Reservation</title>
+</head>
+<body>
+<!--Start Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
+    <div class="container">
+        <a class="navbar-brand text-uppercase fw-bold text-dark" th:href="@{/}"><img class="w-50"
+                                                                                     th:src="@{${'/images/icon.png'}}"><span>L</span>oc-<span>C</span>ars</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto text-center">
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-dark" aria-current="page" th:href="@{/voitures}">Voitures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-dark" th:href="@{/voitures/loue}">Voitures Rerver</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-dark" th:href="@{/voitures/disponible}">Voitures Disponible</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-dark" th:href="@{/voitures/price}">Recherche Voitures par price</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--End Navbar-->
+<div class="container mt-3">
+    <div class="text-center mb-3">
+        <img th:src="@{${'/images/user.png'}}">
+        <h5 class="card-text p-3"> [[${nom}]] [[${prenom}]]</h5>
+    </div>
+</div>
+<div class="container mt-5 d-flex justify-content-center align-content-center">
+    <br>
+    <div class="card  w-50">
+        <div class="card-header">
+            <h4 class="fw-blod text-center p-3"><span class="text-uppercase text-danger">D</span>etails-<span class="text-uppercase text-danger">R</span>eservation</h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><span class="fw-bold text-uppercase">Voiture Id    :</span> [[${idVoiture}]]</p>
+            <p class="card-text"><span class="fw-bold text-uppercase">Model :</span>  [[${model}]]</p>
+            <p class="card-text"><span class="fw-bold text-uppercase">price :</span>  [[${price}]]</p>
+            <p class="card-text"><span class="fw-bold text-uppercase">status : </span>[[${status}]]</p>
+            <p class="card-text"><span class="fw-bold text-uppercase">Date de Reservation :</span> [[${date_reservation}]]</p>
+            <p class="card-text"><span class="fw-bold text-uppercase">Date de Circulation : </span>[[${date_circulation}]]</p>
+            <p class="card-text"><span class="fw-bold text-uppercase">Date de Retour :</span> [[${date_retour}]]</p>
+            <p class="text-end"><input type="button" name="action" value="Back" class="btn btn-danger p-2" onclick="BackForm()"/></p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function BackForm() {
+        window.location = "[[@{/voitures}]]";
+    }
+</script>
+</body>
+</html>

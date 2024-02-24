@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="icon" th:href="@{${'/images/logo.png'}}">
+  <link rel="stylesheet" type="text/css" th:href="@{${'Css/style.css'}}"/>
+  <title>Client-Form</title>
+</head>
+<body>
+<!--Start Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
+  <div class="container">
+    <a class="navbar-brand text-uppercase fw-bold text-dark" th:href="@{/}"><img class="w-50"
+                                                                                 th:src="@{${'/images/icon.png'}}"><span>L</span>oc-<span>C</span>ars</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto text-center">
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-dark" aria-current="page" th:href="@{/voitures}">Voitures</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-dark" th:href="@{/voitures/loue}">Voitures Rerver</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-dark" th:href="@{/voitures/disponible}">Voitures Disponible</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-dark" th:href="@{/voitures/price}">Recherche Voitures par price</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--End Navbar-->
+
+<div class="container">
+  <br>
+  <h4 class="p-2 mt-3 text-center">information sur voiture selectionnee </h4>
+  <table class="table table-hover">
+    <tr>
+      <th>Picture</th>
+      <th>Voiture Id</th>
+      <th>Licence</th>
+      <th>Mileage</th>
+      <th>Model</th>
+      <th>price</th>
+      <th>Status</th>
+      <th>Year</th>
+    </tr>
+    <tr>
+      <td><p class="text-center"><img th:src="@{${'/images/'+voiture.getPicture()}}" class="w-100 voiture"></p></td>
+      <td th:text="${voiture.getIdVoiture()}"></td>
+      <td th:text="${voiture.getLicense()}"></td>
+      <td th:text="${voiture.getMileage()}"></td>
+      <td th:text="${voiture.getModel()}"></td>
+      <td th:text="${voiture.getPrice()}"></td>
+      <td th:text="${voiture.getStatus()}"></td>
+      <td th:text="${voiture.getYear()}"></td>
+    </tr>
+  </table>
+</div>
+<br>
+<div class="container">
+  <h4 class="p-2">Retour de Voiture </h4>
+  <br>
+  <form name="maForm" th:action="@{/voituresReturn/return/{idVoiture}(idVoiture=${voiture.getIdVoiture()})}" method="Get">
+
+    <table class="table table-striped ">
+
+      <tr>
+        <td>Date de Retour</td>
+        <td><input type="date"
+                   th:value="${dateRetour}" name="dateRetour"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" name="action" value="Retour" class="btn btn-danger m-2"/>
+          <input type="button" name="action" value="cancel" class="btn btn-dark m-2" onclick="CancelForm()"/>
+        </td>
+
+      </tr>
+
+    </table>
+
+
+  </form>
+</div>
+
+<script>
+  function CancelForm() {
+    window.location = "[[@{/voitures}]]";
+  }
+</script>
+</body>
+</html>
